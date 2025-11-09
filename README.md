@@ -1,4 +1,8 @@
 # 4.Execution_of_NetworkCommands
+
+## NAME: MANJUSRI KAVYA R
+## REG.NO: 212224040186
+
 ## AIM :Use of Network commands in Real Time environment
 ## Software : Command Prompt And Network Protocol Analyzer
 ## Procedure: To do this EXPERIMENT- follows these steps:
@@ -26,7 +30,44 @@ This commands includes
 • Other IP Commands e.g. show ip route etc.
 <BR>
 
+## PROGRAM
+## Client.py
+```
+import socket 
+from pythonping import ping 
+s=socket.socket() 
+s.bind(('localhost'8000)) 
+s.listen(5) 
+c,addr=s.accept() 
+while True: 
+hostname=c.recv(1024).decode() 
+try: 
+c.send(str(ping(hostname, verbose=False)).encode()) 
+except KeyError: 
+c.send("Not Found".encode())
+```
+## Server.py
+```
+import socket 
+s=socket.socket() 
+s.connect(('localhost',8000)) 
+while True: 
+ip=input("Enter the website you want to ping ") 
+s.send(ip.encode()) 
+print(s.recv(1024).decode())
+```
+## TRACEROUTE COMMAND
+```
+from scapy.all import*     
+target = ["www.google.com"]     
+result, unans = traceroute(target,maxttl=32) 
+print(result,unans)
+```
 ## Output
+
+<img width="1249" height="656" alt="image" src="https://github.com/user-attachments/assets/977ec9b8-70bf-4273-bb19-a7a7a77bfa4c" />
+
+<img width="1592" height="845" alt="image" src="https://github.com/user-attachments/assets/db03e920-cee8-4bcf-8a03-650fd2a33481" />
 
 ## Result
 Thus Execution of Network commands Performed 
